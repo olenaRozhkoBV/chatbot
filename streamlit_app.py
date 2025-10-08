@@ -14,12 +14,13 @@ for msg in st.session_state.messages:
 
 if prompt := st.chat_input("Enter full name of the person you want to find..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
+    data = ""
 
     with st.chat_message("user"):
         st.markdown(prompt)
 
     try:
-        url = f"http://127.0.0.1:8000/query?query={prompt}"
+        url = f"http://127.0.0.1:8000/ai-assistant/help?query={prompt}"
         response = requests.post(
             url,
             timeout=15,
